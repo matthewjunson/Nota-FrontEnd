@@ -1,7 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+
+import 'src/components/AccountWindow.jsx'
+import 'src/components/NavBar.jsx'
+import 'src/components/SideBar.jsx'
+import 'src/components/NotesBoard.jsx'
+import 'src/components/NoteEditWindow.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
