@@ -1,0 +1,71 @@
+/* NoteItem.css */
+.noteItemContainer {
+    font-family: Verdana, sans-serif;
+    width: 250px;
+    height: 250px;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /*horizontal alignment*/
+    align-items: center; /*vertical alignment*/
+}
+
+.noteItemContainer:hover > .footer > .noteButtonMenu {
+    visibility: visible;
+}
+
+.title, .body {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.title {
+    text-align: center;
+}
+
+.body {
+    text-align: left;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.noteButtonMenu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    visibility: hidden;
+
+}
+
+.noteButton {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    border-radius: 15%;
+    border: 1px solid coral;
+    cursor: pointer;
+    margin: 0 2px;
+}
+#edit {
+    background-image: url('https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000');
+}
+#color {
+    background-image: url('https://img.icons8.com/?size=100&id=54062&format=png&color=000000');
+}
+#reminder {
+    background-image: url('https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000');
+}
+#menu {
+    background-image: url('https://img.icons8.com/?size=100&id=98963&format=png&color=000000');
+}
