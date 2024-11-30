@@ -1,4 +1,34 @@
-/* NoteItem.css */
+/*
+Pin icon, black: https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000
+Pin icon, white: https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000
+Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
+*/
+
+.notesBoard {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 20px;
+}
+.newNoteContainer {
+    width: 250px;
+    height: 250px;
+    border: 2px dotted gray;
+    border-radius: 15px;
+    background-image: url(https://img.icons8.com/?size=100&id=11153&format=png&color=000000);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.newNoteContainer:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+
 .noteItemContainer {
     font-family: Verdana, sans-serif;
     width: 250px;
@@ -6,7 +36,7 @@
     box-sizing: border-box;
     padding: 20px;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center; /*horizontal alignment*/
