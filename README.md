@@ -1,3 +1,3 @@
 # NOTA
 
-A simple digital alternative paper sticky notes.
+A simple digital alternative to paper sticky notes.
