@@ -8,16 +8,19 @@ function NoteItem(props) {
         if (props.Type === "new") {
             return (
                 <>
-                    <div className="newNoteContainer">
-
-                    </div>
+                    <div className="newNoteContainer"></div>
                 </>
             )
         } else { //existing note
             return (
                 <>
                     <div className="noteItemContainer">
-                        <div className="title">{props.Title}</div>
+                        <div className="top">
+                            <div className="title">{props.Title}</div>
+                            <div>
+                                <button id='pin' className='noteButton' onClick={props.onClick}/>
+                            </div>
+                        </div>
                         <div className="body">{props.Body}</div>
                         <div className="footer">
                             <div className="category">{props.Category}</div>
