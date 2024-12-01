@@ -16,7 +16,7 @@ function NotesBoard(props) {
     for (let i = 0; i < 20; i++) {
         note.push(
             {
-                "Title": "COMP229 WEB DEVELOPMENT",
+                "Title": "COMP229 WEB DEVELOPMENT IS THE BEST COURSE IN THE WHOLE WIDE WORLD",
                 "Body" : "Hello World!",
                 "Category" : "Courses",
                 "Type" : "existing"
@@ -34,7 +34,7 @@ function NotesBoard(props) {
         <>
             <div className="notesBoard">
                 {note.map((note, index) => {
-                    if(note.Type == "new") {
+                    if(note.Type === "new") {
                         return (
                             <NoteItem
                                 key={index}
@@ -48,7 +48,8 @@ function NotesBoard(props) {
                                 Title={note.Title}
                                 Body={note.Body}
                                 Category={note.Category}
-                                Type={"existing"}
+                                Type={"existing"} //obtain from 'props.Type'
+                                Pinned={false} //obtain from 'props.Pinned'
                             />
                         )
                     }
