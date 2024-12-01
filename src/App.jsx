@@ -7,14 +7,22 @@ import './components/SideBar.jsx'
 import './components/NotesBoard.jsx'
 import './components/NoteEditWindow.jsx'
 import NotesBoard from "./components/NotesBoard.jsx";
+import NavBar from "./components/NavBar.jsx";
+import SideBar from "./components/SideBar.jsx";
 
 function App() {
 
   return (
     <>
-      <div>
-          <NotesBoard />
-      </div>
+        <div className="App">
+            <div>
+                <NavBar />
+            </div>
+            <div>
+                <SideBar />
+                <NotesBoard />
+            </div>
+        </div>
     </>
   )
 }

@@ -7,10 +7,12 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 .notesBoard {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     align-content: flex-start;
-    gap: 20px;
+    gap: 100px;
+    padding: 0 50px 50px;
+    font-size: 20px;
 }
 .newNoteContainer {
     width: 250px;
@@ -25,7 +27,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .newNoteContainer:hover {
-    background-color: lightgray;
+    background-color: lightgoldenrodyellow;
     cursor: pointer;
 }
 
@@ -72,7 +74,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .title {
-    font-size: 20px;
+    font-size: 1em;
     font-weight: bold;
     text-align: left;
     line-height: 1.2;
@@ -82,7 +84,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .body {
-    font-size: 16px;
+    font-size: 0.8em;
     text-align: left;
 }
 
@@ -94,10 +96,12 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .category {
+    font-size: 0.7em;
     font-weight: bolder;
     border: 1px solid #535bf2;
     padding: 0.2em;
     border-radius: 5px;
+    margin-right: 5px;
 }
 
 .noteButtonMenu {
@@ -117,7 +121,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     border-radius: 15%;
     border: 1px solid coral;
     cursor: pointer;
-    margin: 0 2px;
+    /*margin: 0 2px;*/
 }
 #edit {
     background-image: url('https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000');
