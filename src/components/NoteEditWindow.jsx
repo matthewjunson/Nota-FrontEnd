@@ -3,7 +3,20 @@
 
 function NoteEditWindow() {
     return (
-        <></>
+        <>
+            <div className="noteEditWindow">
+                <div id="title">
+
+                </div>
+                <div id="category">
+
+                </div>
+                <div id="body">
+
+                </div>
+
+            </div>
+        </>
     )
 }
 
