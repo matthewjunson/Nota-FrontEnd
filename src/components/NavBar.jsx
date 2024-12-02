@@ -11,7 +11,7 @@ function NavBar() {
         <div className="navbar">
             {/* Logo Section */}
             <div className="navbar-logo">
-                <img src="./assets/icons8-note-keek-16.png" alt="Logo" /> 
+                <img src="./assets/icons8-note-keek-16.png" alt="Logo" />
                 <h1>Notes App</h1>
             </div>
 
