@@ -1,27 +1,25 @@
-import { useState, useEffect } from 'react'
-// import './App.css'
+/* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
 
-import './components/AccountWindow.jsx'
-import NoteEditWindow from './components/NoteEditWindow.jsx'
+import { useState, useEffect } from 'react'
+import './App.css'
+
+import AccountWindow from "./components/AccountWindow.jsx";
+import NoteEditWindow from './components/NoteEditWindow.jsx';
 import NotesBoard from "./components/NotesBoard.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SideBar from "./components/SideBar.jsx";
 
 function App() {
 
-  return (
+    return (
     <>
         <div className="App">
-            <div>
-                <NavBar />
-            </div>
-            <div>
-                <SideBar />
-                <NotesBoard />
-            </div>
+            <NavBar />
+            <SideBar />
+            <NotesBoard />
         </div>
     </>
-  )
+    )
 }
 
 export default App
