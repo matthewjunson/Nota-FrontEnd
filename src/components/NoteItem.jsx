@@ -5,20 +5,45 @@
 import {useState, useEffect} from 'react'
 
 function NoteItem(props) {
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+    const [category, setCategory] = useState('')
+    const [creationDate, setCreationDate] = useState('')
+    const [modifiedDate, setModifiedDate] = useState('')
+    const [isPinned, setIsPinned] = useState(false)
+    const [colour, setColour] = useState('')
+    const [editor, setEditor] = useState(false)
 
 
-    // optionally, color can be saved as a record field instead of
-    // randomizing color on each render
-    function getRandomHexColor() {
+    const togglePin = () => {
+        setIsPinned(!isPinned);
+        // props.Pinned(isPinned);
+    }
+
+    const getPinImage = () => {
+        return isPinned
+            ? "https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000" // Black pin
+            : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
+    }
+
+
+    // this method can be used to generate a random color for every new note created
+    const getRandomHexColor = () => {
         const hex = Math.floor(Math.random() * (Math.pow(256,3)-1)).toString(16); // Generate a number and convert to hex
         return `#${hex.padStart(6, '0')}`;
     }
 
+    const createNewNote = () => {
+
+    }
+    //this function is called to generate either a new or existing note
     function GenerateNote () {
         if (props.Type === "new") {
             return (
             <>
-                <div className="newNoteContainer" />
+                <div className="newNoteContainer"
+                     onClick={() => {createNewNote()}}
+                />
             </>
             )
         } else { //existing note
@@ -26,13 +51,17 @@ function NoteItem(props) {
             <>
                 <div
                     className="noteItemContainer"
-                    style={{backgroundColor: getRandomHexColor()}}
+                    style={{backgroundColor: "wheat"}} //set color
                 >
                     <div className="top">
                         <div
                             className="title">{props.Title}</div>
                         <div>
-                            <button id='pin' className='noteButton' onClick={props.onClick}/>
+                            <button id="pin"
+                                    onClick={togglePin}
+                                    className={isPinned === true ? "pin-on" : "pin-off"}
+                                    style={{backgroundImage: `url(${getPinImage()})`}}
+                            />
                         </div>
                     </div>
                     <div className="body">{props.Body}</div>

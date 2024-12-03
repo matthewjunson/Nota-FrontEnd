@@ -1,27 +1,33 @@
 // This component will encapsulate the actual sticky notes. Similar to the BookLibrary exercise.
 
 /* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
+import {useState, useEffect} from "react";
 
 import "./NotesBoard.css"
 import NoteItem from "./NoteItem.jsx";
 
 function NotesBoard(props) {
+    const [data, setData] = useState([]);
+
+    // setData(props.data);
+
     let note = [
         {
             "Type" : "new"
         }
     ];
 
-    // props.data.map((note) => {
+    // data.map((note) => {
     //     note.push(
     //         {
     //             "Type" : "existing",
-    //             "Title": props.title,
-    //             "Body" : props.body,
-    //             "Category" : props.category,
-    //             "Pinned": props.pinned,
-    //             "DateCreated": props.dateCreated,
-    //             "DateModified": props.dateModified
+    //             "ID" : data.id, //obtained from record's "_id" field
+    //             "Title": data.title,
+    //             "Body" : data.body,
+    //             "Category" : data.category,
+    //             "Pinned": data.pinned,
+    //             "DateCreated": data.dateCreated,
+    //             "DateModified": data.dateModified
     //         }
     //     )
     // })
@@ -32,18 +38,18 @@ function NotesBoard(props) {
     for (let i = 0; i < 20; i++) {
         note.push(
             {
+                "ID" : "",
                 "Type" : "existing",
                 "Title": "COMP229 WEB DEVELOPMENT IS THE BEST COURSE IN THE WHOLE WIDE WORLD",
                 "Body" : "Hello World!",
                 "Category" : "Courses",
-                "Pinned": true //sample
+                "Pinned": false //sample
             }
         )
     }
 
     return (
     <>
-        {/*<div className="background"></div>*/}
         <div className="notesBoard">
             {note.map((note, index) => {
                 if(note.Type === "new") {
@@ -57,11 +63,12 @@ function NotesBoard(props) {
                     return (
                         <NoteItem
                             key={index}
+                            id={note.ID}
                             Title={note.Title}
                             Body={note.Body}
                             Category={note.Category}
-                            Type={"existing"} //obtain from 'props.Type'
-                            Pinned={false} //obtain from 'props.Pinned'
+                            Type={"existing"} //obtain from 'note.Type'
+                            Pinned={note.Pinned} //obtain from 'note.Pinned'
                         />
                     )
                 }

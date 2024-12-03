@@ -50,8 +50,11 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .noteItemContainer:hover {
-    #pin, .noteButton {
+    .pin-off, .noteButton {
         visibility: visible;
+    }
+    .pin-on {
+        background-color: rgba(255, 255, 255, 0.5);
     }
     box-shadow: white 0px 0px 30px;
 }
@@ -63,11 +66,29 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 #pin {
-    visibility: hidden;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15%;
+    border: none;
+    cursor: pointer;
     margin-left: 5px;
     width: 50px;
     height: 50px;
-    background-image: url("https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000");
+}
+
+#pin:hover {
+    background-color: rgba(255,255,255,1);
+}
+
+.pin-off {
+    background-color: rgba(255, 255, 255, 0.5);
+    visibility: hidden;
+}
+
+.pin-on{
+    background-color: transparent;
+    visibility: visible;
 }
 
 .title, .body {
@@ -120,7 +141,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.5);
     width: 30px;
     height: 30px;
     border-radius: 15%;
@@ -141,5 +162,5 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .noteButton:hover {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,1);
 }
