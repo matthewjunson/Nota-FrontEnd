@@ -8,11 +8,17 @@ function NoteItem(props) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [category, setCategory] = useState('')
+    const [isPinned, setIsPinned] = useState(false)
     const [creationDate, setCreationDate] = useState('')
     const [modifiedDate, setModifiedDate] = useState('')
-    const [isPinned, setIsPinned] = useState(false)
     const [colour, setColour] = useState('')
-    const [editor, setEditor] = useState(false)
+
+    useEffect(() => {
+        setTitle(props.Title)
+        setBody(props.Body)
+        setCategory(props.Category)
+        setIsPinned(props.Pinned)
+    }, [])
 
 
     const togglePin = () => {
@@ -26,24 +32,39 @@ function NoteItem(props) {
             : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
     }
 
-
     // this method can be used to generate a random color for every new note created
     const getRandomHexColor = () => {
-        const hex = Math.floor(Math.random() * (Math.pow(256,3)-1)).toString(16); // Generate a number and convert to hex
+        const hex = Math.floor(Math.random() * (Math.pow(256,3)-1)).toString(16);
         return `#${hex.padStart(6, '0')}`;
     }
 
-    const createNewNote = () => {
-
+    // this function will be invoked when either the new note is clicked or the edit button on an
+    // existing note is clicked, an array will be passed back to NotesBoard.jsx through onEditClick
+    function handleEditClick(noteType = "") {
+        console.log("props.onEditClick:", props.onEditClick); // Check if it's defined
+        let noteData = {};
+        if (noteType === "existingNote") {
+            console.log("Edit button clicked")
+            noteData = {
+                "Title": title,
+                "Body": body,
+                "Category": category,
+                "Pinned": isPinned
+            }
+            console.log(noteData.Title);
+        } else {
+            console.log("New note button clicked")
+        }
+        props.onEditClick();
     }
+
     //this function is called to generate either a new or existing note
     function GenerateNote () {
-        if (props.Type === "new") {
+        if (props.Type === "new") { //new note
             return (
             <>
-                <div className="newNoteContainer"
-                     onClick={() => {createNewNote()}}
-                />
+                <div className='newNoteContainer'
+                     onClick={() => handleEditClick()}/>
             </>
             )
         } else { //existing note
@@ -54,8 +75,7 @@ function NoteItem(props) {
                     style={{backgroundColor: "wheat"}} //set color
                 >
                     <div className="top">
-                        <div
-                            className="title">{props.Title}</div>
+                        <div className="title">{title}</div>
                         <div>
                             <button id="pin"
                                     onClick={togglePin}
@@ -64,11 +84,12 @@ function NoteItem(props) {
                             />
                         </div>
                     </div>
-                    <div className="body">{props.Body}</div>
+                    <div className="body">{body}</div>
                     <div className="footer">
-                        <div className="category">{props.Category}</div>
+                        <div className="category">{category}</div>
                         <div className="noteButtonMenu">
-                            <button id='edit' className='noteButton' onClick={props.onClick}/>
+                            <button id='edit' className='noteButton'
+                                    onClick={() => handleEditClick("existingNote")}/>
                             <button id='color' className='noteButton' onClick={props.onClick}/>
                             <button id='reminder' className='noteButton' onClick={props.onClick}/>
                             <button id='menu' className='noteButton' onClick={props.onClick}/>

@@ -10,7 +10,6 @@ import "./NavBar.css";
 function NavBar() {
     return (
         <div className="navbar">
-            {/* Logo Section */}
                 <button className="burger-menu"></button>
                 <button className="logo-icon"></button>
                 <h1 className="app-name">NOTA</h1>

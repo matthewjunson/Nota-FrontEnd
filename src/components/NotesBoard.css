@@ -1,7 +1,12 @@
 /*
 Pin icon, black: https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000
-Pin icon, white: https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000
-Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
+Pin icon, white: https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=FFFFFF
+Plus icon, black: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
+Plus icon, white: https://img.icons8.com/?size=100&id=3220&format=png&color=FFFFFF
+Pencil icon: https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000
+Swatch icon: https://img.icons8.com/?size=100&id=54062&format=png&color=000000
+Bell icon: https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000
+Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
@@ -10,10 +15,14 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-content: flex-start;
     gap: 50px;
-    padding: 100px 50px 50px 150px;
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    bottom: 50px;
+    left: 150px;
     font-size: 20px;
     color: white;
 }
@@ -21,15 +30,15 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 .newNoteContainer {
     width: 200px;
     height: 200px;
+    padding: 20px;
     border: 3px dashed white;
     border-radius: 15px;
-    background-image: url(https://img.icons8.com/?size=100&id=11153&format=png&color=000000);
+    background-image: url('https://img.icons8.com/?size=100&id=11153&format=png&color=FFFFFF');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
 }
 
 .newNoteContainer:hover {
@@ -44,7 +53,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     width: 200px;
     height: 200px;
     padding: 20px;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     border-radius: 15px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
 }
@@ -92,7 +101,9 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 }
 
 .title, .body {
-    background-color: rgba(0,0,0,0.3);
+    color: black;
+    /*background-color: rgba(0,0,0,0.3);*/
+    background-color: rgba(255,255,255,0.3);
     border-radius: 5px;
     text-align: left;
     line-height: 1.2;
@@ -119,6 +130,7 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 2px;
 }
 
 .category {
@@ -128,12 +140,15 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
     padding: 0.2em;
     border-radius: 5px;
     background-color: #183C5C;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .noteButtonMenu {
     display: flex;
     justify-content: space-between;
-    gap: 5px;
+    gap: 2px;
     visibility: hidden;
 }
 
