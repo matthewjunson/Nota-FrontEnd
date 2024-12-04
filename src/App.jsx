@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 import AccountWindow from "./components/AccountWindow.jsx";
-import NoteEditWindow from './components/NoteEditWindow.jsx';
+// import NoteEditWindow from './components/NoteEditWindow.jsx';
 import NotesBoard from "./components/NotesBoard.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SideBar from "./components/SideBar.jsx";
@@ -41,6 +41,9 @@ function App(props) {
     //         console.error("Error fetching todos:", error);
     //     }
     // }
+
+
+
 
     return (
     <>

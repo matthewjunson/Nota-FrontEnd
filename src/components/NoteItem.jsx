@@ -3,8 +3,10 @@
 
 /* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
 import {useState, useEffect} from 'react'
+import NoteEditWindow from "./NoteEditWindow.jsx";
 
 function NoteItem(props) {
+    const [type, setType] = useState('new');
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [category, setCategory] = useState('')
@@ -12,8 +14,10 @@ function NoteItem(props) {
     const [creationDate, setCreationDate] = useState('')
     const [modifiedDate, setModifiedDate] = useState('')
     const [colour, setColour] = useState('')
+    const [editWindowVisible, setEditWindowVisible] = useState(false);
 
     useEffect(() => {
+        setType(props.Type)
         setTitle(props.Title)
         setBody(props.Body)
         setCategory(props.Category)
@@ -38,10 +42,9 @@ function NoteItem(props) {
         return `#${hex.padStart(6, '0')}`;
     }
 
-    // this function will be invoked when either the new note is clicked or the edit button on an
-    // existing note is clicked, an array will be passed back to NotesBoard.jsx through onEditClick
-    function handleEditClick(noteType = "") {
-        console.log("props.onEditClick:", props.onEditClick); // Check if it's defined
+    // this function will be invoked when either the new note is
+    // clicked or the edit button on an existing note is clicked
+    const handleEditClick = (noteType = "") => {
         let noteData = {};
         if (noteType === "existingNote") {
             console.log("Edit button clicked")
@@ -53,26 +56,27 @@ function NoteItem(props) {
             }
             console.log(noteData.Title);
         } else {
-            console.log("New note button clicked")
+            console.log("New note button clicked");
         }
-        props.onEditClick();
+        setEditWindowVisible(true);
     }
 
-    //this function is called to generate either a new or existing note
+    //this function is called to generate either the new note button or existing note
     function GenerateNote () {
-        if (props.Type === "new") { //new note
+        if (type === "new") { //new note
             return (
             <>
                 <div className='newNoteContainer'
-                     onClick={() => handleEditClick()}/>
+                     onClick={() => {handleEditClick()}}
+                >
+                </div>
             </>
             )
         } else { //existing note
             return (
             <>
-                <div
-                    className="noteItemContainer"
-                    style={{backgroundColor: "wheat"}} //set color
+                <div className="noteItemContainer"
+                     style={{backgroundColor: "wheat"}} //set color
                 >
                     <div className="top">
                         <div className="title">{title}</div>
@@ -104,6 +108,17 @@ function NoteItem(props) {
     return (
         <>
             {GenerateNote()}
+            {editWindowVisible === true
+                ? <NoteEditWindow
+                    Type={type}
+                    Title={title}
+                    Body={body}
+                    Category={category}
+                    Pinned={isPinned}
+                    onExitClick={setEditWindowVisible}
+                />
+                : null
+            }
         </>
     )
 }

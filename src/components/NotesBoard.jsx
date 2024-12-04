@@ -5,14 +5,11 @@ import {useState, useEffect} from "react";
 
 import "./NotesBoard.css"
 import NoteItem from "./NoteItem.jsx";
-import NoteEditWindow from "./NoteEditWindow.jsx";
 
 function NotesBoard(props) {
     const [data, setData] = useState([]);
     const [notesList, setNotesList] = useState([{"Type" : "new"}]);
-    const [editWindowVisible, setEditWindowVisible] = useState(true);
     const [existingNoteData, setExistingNoteData] = useState(null);
-    const [editWindow, setEditWindow] = useState(null);
 
     useEffect(() => {
         // setData(props.data);
@@ -24,7 +21,7 @@ function NotesBoard(props) {
             "Category": null,
             "Pinned": null
         }];
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 10; i++) {
             // notes.push(
             //     {
             //         "Type" : "existing",
@@ -66,7 +63,8 @@ function NotesBoard(props) {
             );
         }
         setNotesList(notes);
-        console.log(notes);
+        console.log(`Notes: `);
+        console.log(notesList);
     }, [props.data]);
 
     // useEffect(() => {
@@ -137,32 +135,9 @@ function NotesBoard(props) {
     // }
     // console.log(notes);
 
-    function handleEditClick() {
-        // if (noteData === null) {
-        //     setEditWindow(
-        //         <NoteEditWindow
-        //             onExitClick={setEditWindowVisible}
-        //         />
-        //     )
-        // } else {
-        //     setEditWindow(
-        //         <NoteEditWindow
-        //             onExitClick={setEditWindowVisible}
-        //             noteData={noteData}
-        //         />
-        //     )
-        //     setExistingNoteData(noteData);
-        // }
-        setEditWindow(<NoteEditWindow onExitClick={setEditWindowVisible} />)
-        setEditWindowVisible(true);
-    }
 
     return (
         <>
-            {editWindowVisible === true
-                ? <NoteEditWindow onExitClick={setEditWindowVisible} />
-                : null
-            }
             <div className="notesBoard">
                 {notesList.map((note, index) => {
                     if (note.Type === "new") {
@@ -178,8 +153,7 @@ function NotesBoard(props) {
                                 Title={note.Title}
                                 Body={note.Body}
                                 Category={note.Category}
-                                Pinned={note.Pinned} //obtain from 'note.Pinned'
-                                onEditClick={handleEditClick}
+                                Pinned={note.Pinned}
                             />
                         )
                     }

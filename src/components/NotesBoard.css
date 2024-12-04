@@ -28,6 +28,8 @@ Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 }
 
 .newNoteContainer {
+    box-sizing: content-box;
+    margin: 0;
     width: 200px;
     height: 200px;
     padding: 20px;

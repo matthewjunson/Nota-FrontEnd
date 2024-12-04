@@ -5,6 +5,7 @@
 
 import './NoteEditWindow.css'
 import {useEffect, useState} from "react";
+import App from "../App.jsx";
 
 function NoteEditWindow(props) {
     const [noteType, setNoteType] = useState("new");
@@ -14,15 +15,16 @@ function NoteEditWindow(props) {
     const [isPinned, setIsPinned] = useState(false)
     const [colour, setColour] = useState('')
 
-    // useEffect(() => {
-    //     setTitle(props.Title);
-    //     setBody(props.Body);
-    //     setCategory(props.Category);
-    //     setIsPinned(props.Pinned);
-    // }, [])
+    useEffect(() => {
+        setNoteType(props.Type);
+        setTitle(props.Title);
+        setBody(props.Body);
+        setCategory(props.Category);
+        setIsPinned(props.Pinned);
+    }, [])
 
-    const getHeader = () => {
-        return (noteType === "new" ? "Create New Note" : "Edit Note");
+    function getHeader() {
+        return (noteType === "new" ? "Create New Note" : "Edit Note")
     }
 
     const togglePin = () => {
@@ -36,8 +38,8 @@ function NoteEditWindow(props) {
             : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
     }
 
-    function getWindow() {
-
+    function handleExitClick(){
+        props.onExitClick(false);
     }
 
     return (
@@ -48,11 +50,15 @@ function NoteEditWindow(props) {
                         <div className="header-spacer-left" />
                         <div>{getHeader()}</div>
                         <div>
-                            <button className="close-button" onClick={() => {props.onExitClick(false)}} />
+                            <button className="close-button" onClick={handleExitClick} />
                         </div>
                     </div>
                     <div className="title-container">
-                        <div><input className="title-input" type="text" placeholder="Title..."/></div>
+                        <div><input className="title-input"
+                                    type="text"
+                                    placeholder="Title..."
+                                    defaultValue={title}
+                        /></div>
                         <button id="pin"
                                 onClick={togglePin}
                                 className={isPinned === true ? "pin-on" : "pin-off"}
@@ -60,7 +66,11 @@ function NoteEditWindow(props) {
                         />
                     </div>
                     <div className="body-container">
-                        <textarea className="body-input" type="text" placeholder="Description..."/>
+                        <textarea className="body-input"
+                                  type="text"
+                                  placeholder="Description..."
+                                  defaultValue={body}
+                        />
                     </div>
                     <div id="category">
 
