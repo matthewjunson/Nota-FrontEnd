@@ -3,23 +3,18 @@
 // This is separate from the sidebar mainly to make it easier (hopefully) when configuring the CSS
 // regarding flex containers and items and stuff.
 
-import React from "react";
+/* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
+
 import "./NavBar.css";
 
 function NavBar() {
     return (
         <div className="navbar">
-            {/* Logo Section */}
-            <div className="navbar-logo">
-                <img src="./assets/icons8-note-keek-16.png" alt="Logo" />
-                <h1>Notes App</h1>
-            </div>
-
-            {/* Search Bar Section */}
-            <div className="navbar-search">
-                <input type="text" placeholder="Search notes..." />
-                <button>Search</button>
-            </div>
+                <button className="burger-menu"></button>
+                <button className="logo-icon"></button>
+                <h1 className="app-name">NOTA</h1>
+                <input className="search-bar" type="text" placeholder="Search notes..." />
+                <button className="search-button"></button>
         </div>
     );
 }

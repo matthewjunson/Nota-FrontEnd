@@ -1,0 +1,11 @@
+.side-bar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+    z-index: 69;
+    box-sizing: border-box;
+    background-color: #5788B2;
+    box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.5);
+}

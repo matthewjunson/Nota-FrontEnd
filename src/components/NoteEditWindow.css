@@ -1,0 +1,153 @@
+/*
+Close icon: https://img.icons8.com/?size=100&id=23537&format=png&color=000000
+*/
+
+.overlay {
+    font-family: inherit;
+    position: fixed;
+    z-index: 21;
+    top: 60px;
+    left: 100px;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.editor-container {
+    width: 700px;
+    height: 500px;
+    padding: 20px;
+    background-color: wheat;
+    box-sizing: border-box;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    align-content: center;
+    height: 100%;
+    font-family: inherit;
+    font-size: 40px;
+    color: black;
+}
+
+.header-spacer-left {
+    width: 50px; /*same as close-button size*/
+}
+
+.close-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background-image: url("https://img.icons8.com/?size=100&id=23537&format=png&color=000000");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    cursor: pointer;
+}
+.close-button:hover {
+    background-color: red;
+    background-image: url("https://img.icons8.com/?size=100&id=23537&format=png&color=FFFFFF");
+}
+
+.title-container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.title-input {
+    font-size: 30px;
+    width: 550px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+}
+
+#edit-pin {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.body-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.body-input {
+    font-family: inherit;
+    font-size: 25px;
+    resize: none;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+.title-input:focus, .body-input:focus, .category-input:focus {
+    outline: none;
+}
+
+.category-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.category-input {
+    font-family: inherit;
+    font-size: 20px;
+    height: 40px;
+    width: 50%;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+}
+
+.submit-button {
+    background-color: coral;
+    font-weight: 900;
+    font-family: inherit;
+    font-size: 20px;
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #fd4807;
+    color: #ffffff;
+}
