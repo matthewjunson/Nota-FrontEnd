@@ -8,28 +8,23 @@ import {useEffect, useState} from "react";
 import App from "../App.jsx";
 
 function NoteEditWindow(props) {
-    const [noteType, setNoteType] = useState("new");
+    const [type, setType] = useState("new");
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [category, setCategory] = useState('')
     const [isPinned, setIsPinned] = useState(false)
-    const [colour, setColour] = useState('')
+    const [colour, setColour] = useState('') //unused at the moment
 
     useEffect(() => {
-        setNoteType(props.Type);
-        setTitle(props.Title);
-        setBody(props.Body);
-        setCategory(props.Category);
-        setIsPinned(props.Pinned);
+        setType(props.Type || type);
+        setTitle(props.Title || title);
+        setBody(props.Body || body);
+        setCategory(props.Category || category);
+        setIsPinned(props.Pinned || isPinned);
     }, [])
-
-    function getHeader() {
-        return (noteType === "new" ? "Create New Note" : "Edit Note")
-    }
 
     const togglePin = () => {
         setIsPinned(!isPinned);
-        // props.Pinned(isPinned);
     }
 
     const getPinImage = () => {
@@ -38,8 +33,19 @@ function NoteEditWindow(props) {
             : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
     }
 
-    function handleExitClick(){
-        props.onExitClick(false);
+
+    function handleSubmitClick() {
+        const noteData = {
+            type,
+            title,
+            body,
+            category,
+            isPinned
+        }
+        if (title && body) {
+            console.log("Sending to App.jsx: ", noteData);
+            props.EditWindowData(noteData);
+        }
     }
 
     return (
@@ -48,20 +54,21 @@ function NoteEditWindow(props) {
                 <div className="editor-container">
                     <div className="window-header">
                         <div className="header-spacer-left" />
-                        <div>{getHeader()}</div>
+                        <div className="header">{(type === "new" ? "Create New Note" : "Edit Note")}</div>
                         <div>
-                            <button className="close-button" onClick={handleExitClick} />
+                            <button className="close-button" onClick={() => props.onExitClick(false)} />
                         </div>
                     </div>
                     <div className="title-container">
                         <div><input className="title-input"
                                     type="text"
                                     placeholder="Title..."
-                                    defaultValue={title}
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
                         /></div>
-                        <button id="pin"
+                        <button id="edit-pin"
                                 onClick={togglePin}
-                                className={isPinned === true ? "pin-on" : "pin-off"}
+                                className={isPinned === true ? "edit-pin-on" : "edit-pin-off"}
                                 style={{backgroundImage: `url(${getPinImage()})`}}
                         />
                     </div>
@@ -69,11 +76,20 @@ function NoteEditWindow(props) {
                         <textarea className="body-input"
                                   type="text"
                                   placeholder="Description..."
-                                  defaultValue={body}
+                                  value={body}
+                                  onChange={(e) => setBody(e.target.value)}
                         />
                     </div>
-                    <div id="category">
-
+                    <div className="category-container">
+                        <input className="category-input"
+                               type="text"
+                               placeholder="Category..."
+                               value={category}
+                               onChange={(e) => setCategory(e.target.value)}
+                        />
+                        <button className='submit-button' onClick={() => {handleSubmitClick()}}>
+                            {type === "new" ? "CREATE" : "SAVE"}
+                        </button>
                     </div>
                 </div>
             </div>

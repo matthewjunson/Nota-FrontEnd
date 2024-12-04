@@ -9,20 +9,20 @@ Bell icon: https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000
 Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 */
 
+/*
+This CSS applies to NotesBoard.jsx and NoteItem.jsx
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
 
 .notesBoard {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: flex-start;
     gap: 50px;
-    position: absolute;
-    top: 100px;
-    right: 50px;
-    bottom: 50px;
-    left: 150px;
+    box-sizing: border-box;
+    padding: 100px 50px 50px 150px;
     font-size: 20px;
     color: white;
 }
@@ -68,6 +68,11 @@ Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
         background-color: rgba(255, 255, 255, 0.5);
     }
     box-shadow: white 0px 0px 30px;
+    .category {
+        max-width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .top {
@@ -89,7 +94,7 @@ Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 }
 
 #pin:hover {
-    background-color: rgba(255,255,255,1);
+    background-color: coral;
 }
 
 .pin-off {
@@ -129,28 +134,28 @@ Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 
 .footer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 2px;
 }
 
 .category {
+    display: flex;
+    align-items: center;
     font-size: 0.7em;
     font-weight: lighter;
     border: 1px solid transparent;
     padding: 0.2em;
+    height: 22px;
     border-radius: 5px;
     background-color: #183C5C;
-    max-width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .noteButtonMenu {
     display: flex;
     justify-content: space-between;
-    gap: 2px;
+    gap: 5px;
+    margin-left: 2px;
     visibility: hidden;
 }
 
@@ -179,5 +184,5 @@ Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 }
 
 .noteButton:hover {
-    background-color: rgba(255,255,255,1);
+    background-color: coral;
 }
