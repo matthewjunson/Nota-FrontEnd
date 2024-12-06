@@ -14,50 +14,50 @@ function App(props) {
     const [newNote, setNewNote] = useState([]);
     const [editType, setEditType] = useState("new");
 
-    // const getNotes = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:3000/api/notes`);
-    //         const data = await response.json();
-    //         setNotes(data);
-    //     } catch (error) {
-    //         console.error("Error fetching todos:", error);
-    //     }
-    // }
+     const getNotes = async () => {
+         try {
+             const response = await fetch(`${import.meta.env.VITE_BE_URL}/api/notes`);
+             const data = await response.json();
+            setNotes(data);
+        } catch (error) {
+            console.error("Error fetching todos:", error);
+        }
+    }
 
-    // const addNewNote = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:3000/api/notes`, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify({ text: newNote }),
-    //         });
-    //         if (response.ok) {
-    //             setNewTodo("");
-    //             getNotes();
-    //         }
-    //     } catch (error) {
-    //         console.error("Error creating note:", error);
-    //     }
-    // }
+    const addNewNote = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BE_URL}/api/notes`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: newNote }),
+            });
+            if (response.ok) {
+                setNewTodo("");
+                getNotes();
+            }
+        } catch (error) {
+            console.error("Error creating note:", error);
+        }
+    }
 
-    // const updateNote = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:3000/api/notes`, {
-    //             method: "PUT",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify({ text: newNote }),
-    //         });
-    //         if (response.ok) {
-    //             getNotes();
-    //         }
-    //     } catch (error) {
-    //         console.error("Error updating note:", error);
-    //     }
-    // }
+    const updateNote = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BE_URL}/api/notes`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: newNote }),
+            });
+            if (response.ok) {
+                getNotes();
+            }
+        } catch (error) {
+            console.error("Error updating note:", error);
+        }
+    }
 
     // place getNotes inside this useEffect, store the retrieved data through setNotes(data)
     useEffect(() => {
