@@ -9,13 +9,14 @@ import SideBar from "./components/SideBar.jsx";
 
 function App() {
     const [notes, setNotes] = useState(null);
+    const url = import.meta.env.VITE_BE_URL;
 
     const getNotes = async () => {
         let notes = [
             {"Type": "new"},
         ];
         try {
-            const response = await fetch(`http://localhost:3000/api/notes`);
+            const response = await fetch(`${url}/api/notes`);
             const dbNotes = await response.json();
             if (response.ok) {
                 dbNotes.forEach(note => {
@@ -30,7 +31,7 @@ function App() {
 
     const addNewNote = async (noteData) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/notes`, {
+            const response = await fetch(`${url}/api/notes`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,8 +54,8 @@ function App() {
 
     const updateNote = async (noteData) => {
         let route = (noteData.CRUD === "update"
-            ?`http://localhost:3000/api/notes/updateNote/${noteData._id}` // update note info
-            : `http://localhost:3000/api/notes/changePinState/${noteData._id}`); // simply update pinned state
+            ?`${url}/notes/updateNote/${noteData._id}` // update note info
+            : `${url}/notes/changePinState/${noteData._id}`); // simply update pinned state
         try {
             const response = await fetch(route, {
                 method: "PUT",
@@ -86,7 +87,7 @@ function App() {
 
     const deleteNote = async (noteData) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/notes/${noteData._id}`, { // Pass the _id in the URL
+            const response = await fetch(`${url}/notes/${noteData._id}`, { // Pass the _id in the URL
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
