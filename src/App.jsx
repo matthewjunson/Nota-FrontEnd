@@ -54,8 +54,8 @@ function App() {
 
     const updateNote = async (noteData) => {
         let route = (noteData.CRUD === "update"
-            ?`${url}/notes/updateNote/${noteData._id}` // update note info
-            : `${url}/notes/changePinState/${noteData._id}`); // simply update pinned state
+            ?`${url}/api/notes/updateNote/${noteData._id}` // update note info
+            : `${url}/api/notes/changePinState/${noteData._id}`); // simply update pinned state
         try {
             const response = await fetch(route, {
                 method: "PUT",
@@ -87,7 +87,7 @@ function App() {
 
     const deleteNote = async (noteData) => {
         try {
-            const response = await fetch(`${url}/notes/${noteData._id}`, { // Pass the _id in the URL
+            const response = await fetch(`${url}/api/notes/${noteData._id}`, { // Pass the _id in the URL
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
