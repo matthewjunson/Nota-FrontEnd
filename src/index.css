@@ -6,8 +6,11 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  /*background-image: url("./assets/kork-platte-hintergrund-pinwand.jpg");*/
-  background-image: url("./assets/chalkboard-background.jpg");
-  background-repeat: repeat-y;
-  background-size: cover;
+  /*background-image: url("./assets/chalkboard-background.jpg");*/
+  /*background-repeat: repeat-y;*/
+  /*background-size: cover;*/
+  /*background-image: url("./assets/cork-board.jpg");*/
+  background-image: url("./assets/blackboard.jpg");
+  background-repeat: repeat;
+  background-size: 69%;
 }

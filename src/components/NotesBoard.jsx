@@ -8,31 +8,47 @@ import NoteItem from "./NoteItem.jsx";
 
 function NotesBoard(props) {
     const [data, setData] = useState([]);
+    const [orderedNotes, setOrderedNotes] = useState([]);
 
     useEffect(() => {
-        setData(props.data || [ {"Type": "new"}]);
-    }, []);
+            setData(props.data);
+            let orderedNotesList = [];
+            let pinned = [];
+            let unpinned = [];
+            data.forEach((note) => {
+                if (note.Type === "new") {
+                    orderedNotesList.push(note);
+                } else if (note.Pinned === true && note.Type !== "new") {
+                    pinned.push(note);
+                } else if (note.Pinned === false && note.Type !== "new") {
+                    unpinned.push(note);
+                }
+            })
+            pinned.forEach((note) => {
+                orderedNotesList.push(note);
+            })
+            unpinned.forEach((note) => {
+                orderedNotesList.push(note);
+            })
+            setOrderedNotes(orderedNotesList);
+    }, [props.data, data]);
 
     return (
         <>
             <div className="notesBoard">
-                {data.map((note, index) => {
+                {orderedNotes.map((note, index) => {
                     if (note.Type === "new") {
                         return (
                             <NoteItem key={index}
-                                         Type={"new"}
-                                         EditWindowData={props.EditWindowData}/>
+                                      Type={"new"}
+                                      CRUD={props.CRUD}/>
                         )
                     } else {
                         return (
-                            <NoteItem
-                                key={index}
-                                Type={"existing"}
-                                Title={note.Title}
-                                Body={note.Body}
-                                Category={note.Category}
-                                Pinned={note.Pinned}
-                                EditWindowData={props.EditWindowData}
+                            <NoteItem key={index}
+                                      noteData={note}
+                                      Type={"existing"}
+                                      CRUD={props.CRUD}
                             />
                         )
                     }
