@@ -67,7 +67,7 @@ function NoteItem(props) {
             _id,
             "CRUD" : "delete"
         }
-        console.log("Sending to App.jsx: ", noteData);
+        // console.log("Sending to App.jsx: ", noteData);
         props.CRUD(noteData);
     }
 
