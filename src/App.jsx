@@ -109,7 +109,7 @@ function App() {
     }, []);
 
     function handleCRUD(noteData) {
-        console.log("App.jsx received: ", noteData);
+        // console.log("App.jsx received: ", noteData);
         if (noteData.CRUD === "create") {
             addNewNote(noteData);
         } else if (noteData.CRUD === "update" || noteData.CRUD === "changePinState") {

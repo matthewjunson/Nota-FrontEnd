@@ -53,7 +53,7 @@ function NoteEditWindow(props) {
             "Pinned": isPinned
         }
         if (title && body) {
-            console.log("Sending to App.jsx: ", noteData);
+            // console.log("Sending to App.jsx: ", noteData);
             props.CRUD(noteData);
         }
     }
