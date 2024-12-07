@@ -8,19 +8,29 @@ import {useEffect, useState} from "react";
 import App from "../App.jsx";
 
 function NoteEditWindow(props) {
-    const [type, setType] = useState("new");
+    const [type, setType] = useState(null);
+    const [_id, setId] = useState(null);
+    const [creationDate, setCreationDate] = useState(null)
+    const [modifiedDate, setModifiedDate] = useState(null)
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [category, setCategory] = useState('')
     const [isPinned, setIsPinned] = useState(false)
-    const [colour, setColour] = useState('') //unused at the moment
+    const [color, setColor] = useState('') //unused at the moment
 
     useEffect(() => {
-        setType(props.Type || type);
-        setTitle(props.Title || title);
-        setBody(props.Body || body);
-        setCategory(props.Category || category);
-        setIsPinned(props.Pinned || isPinned);
+        setType(props.Type || "new");
+        let noteData = props.noteData;
+        if (noteData) {
+            setId(noteData._id);
+            setCreationDate(noteData.CreationDate);
+            setModifiedDate(noteData.ModifiedDate);
+            setTitle(noteData.Title || title);
+            setBody(noteData.Body || body);
+            setCategory(noteData.Category || category);
+            setIsPinned(noteData.Pinned || isPinned);
+            setColor(noteData.Color);
+        }
     }, [])
 
     const togglePin = () => {
@@ -33,18 +43,18 @@ function NoteEditWindow(props) {
             : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
     }
 
-
     function handleSubmitClick() {
         const noteData = {
-            type,
-            title,
-            body,
-            category,
-            isPinned
+            _id,
+            "CRUD": (type === "new" ? "create" : "update"),
+            "Title": title,
+            "Body": body,
+            "Category": category,
+            "Pinned": isPinned
         }
         if (title && body) {
             console.log("Sending to App.jsx: ", noteData);
-            props.EditWindowData(noteData);
+            props.CRUD(noteData);
         }
     }
 

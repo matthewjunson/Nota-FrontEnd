@@ -6,6 +6,7 @@ Plus icon, white: https://img.icons8.com/?size=100&id=3220&format=png&color=FFFF
 Pencil icon: https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000
 Swatch icon: https://img.icons8.com/?size=100&id=54062&format=png&color=000000
 Bell icon: https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000
+Trash icon: https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=000000
 Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 */
 
@@ -109,13 +110,14 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
 
 .title, .body {
     color: black;
-    /*background-color: rgba(0,0,0,0.3);*/
     background-color: rgba(255,255,255,0.3);
     border-radius: 5px;
     text-align: left;
     line-height: 1.2;
-    overflow: clip;
+    overflow-wrap: break-word;
+    text-wrap: balance;
     text-overflow: ellipsis;
+    overflow: clip;
     padding: 0.2em;
 }
 
@@ -124,6 +126,7 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
     font-weight: bold;
     min-height: 1em;
     max-height: calc(1.2em * 2);
+    max-width: 145px;
 }
 
 .body {
@@ -170,6 +173,10 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
     border: none;
     cursor: pointer;
 }
+.noteButton:hover {
+    background-color: coral;
+}
+
 #edit {
     background-image: url('https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000');
 }
@@ -179,10 +186,12 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
 #reminder {
     background-image: url('https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000');
 }
-#menu {
-    background-image: url('https://img.icons8.com/?size=100&id=98963&format=png&color=000000');
+#trash {
+    background-image: url('https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=FFFFFF');
+    background-color: rgba(255, 0, 0, 0.5);
+}
+#trash:hover {
+    background-image: url('https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=000000');
+    background-color: red;
 }
 
-.noteButton:hover {
-    background-color: coral;
-}
