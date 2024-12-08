@@ -115,7 +115,7 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
     text-align: left;
     line-height: 1.2;
     overflow-wrap: break-word;
-    text-wrap: balance;
+    text-wrap: inherit;
     text-overflow: ellipsis;
     overflow: clip;
     padding: 0.2em;
