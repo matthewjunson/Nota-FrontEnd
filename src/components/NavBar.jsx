@@ -10,11 +10,11 @@ import "./NavBar.css";
 function NavBar() {
     return (
         <div className="navbar">
-                <button className="burger-menu"></button>
-                <button className="logo-icon"></button>
+                <button className="burger-menu"/>
+                <button className="logo-icon" />
                 <h1 className="app-name">NOTA</h1>
                 <input className="search-bar" type="text" placeholder="Search notes..." />
-                <button className="search-button"></button>
+                <button className="search-button"/>
         </div>
     );
 }
