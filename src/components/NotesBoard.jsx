@@ -8,48 +8,28 @@ import NoteItem from "./NoteItem.jsx";
 
 function NotesBoard(props) {
     const [data, setData] = useState([]);
-    const [orderedNotes, setOrderedNotes] = useState([]);
 
+    // Pretty self-explanatory
     useEffect(() => {
             setData(props.data);
-            let orderedNotesList = [];
-            let pinned = [];
-            let unpinned = [];
-            data.forEach((note) => {
-                if (note.Type === "new") {
-                    orderedNotesList.push(note);
-                } else if (note.Pinned === true && note.Type !== "new") {
-                    pinned.push(note);
-                } else if (note.Pinned === false && note.Type !== "new") {
-                    unpinned.push(note);
-                }
-            })
-            pinned.forEach((note) => {
-                orderedNotesList.push(note);
-            })
-            unpinned.forEach((note) => {
-                orderedNotesList.push(note);
-            })
-            setOrderedNotes(orderedNotesList);
-    }, [props.data, data]);
+    }, [props.data]);
 
     return (
         <>
             <div className="notesBoard">
-                {orderedNotes.map((note, index) => {
-                    if (note.Type === "new") {
+                {data.map((note, index) => { // Map through all records of 'notes' from App.jsx
+                    if (note.Type === "new") { // There will be only 1 ghost note with {"Type" : "new"}
                         return (
                             <NoteItem key={index}
                                       Type={"new"}
                                       CRUD={props.CRUD}/>
                         )
                     } else {
-                        return (
+                        return ( // Any other notes are formed here
                             <NoteItem key={index}
                                       noteData={note}
                                       Type={"existing"}
-                                      CRUD={props.CRUD}
-                            />
+                                      CRUD={props.CRUD}/>
                         )
                     }
                 })}

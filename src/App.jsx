@@ -11,7 +11,12 @@ function App() {
     const [notes, setNotes] = useState(null);
     const url = import.meta.env.VITE_BE_URL;
 
-    const getNotes = async () => {
+    useEffect(() => {
+        getAllNotes();
+    }, []);
+
+    // This makes a GET request to retrieve any and all exising notes from the database
+    const getAllNotes = async () => {
         let notes = [
             {"Type": "new"},
         ];
@@ -29,6 +34,7 @@ function App() {
         }
     }
 
+    // This makes a POST request to insert a new record into the DB when a new note is being created
     const addNewNote = async (noteData) => {
         try {
             const response = await fetch(`${url}/api/notes`, {
@@ -45,17 +51,20 @@ function App() {
             });
             if (response.ok) {
                 console.log("Note successfully added");
-                getNotes();
+                getAllNotes(); // called to refresh the grid of notes
             }
         } catch (error) {
             console.error("Error creating note:", error);
         }
     }
 
+    // This is a dual-purpose POST request
+    // 1st is to update the text fields of an existing note. This updates the ModifiedDate field in the DB's record
+    // 2nd is to update ONLY the 'Pinned' value of the record. This does NOT update the ModifiedDate.
     const updateNote = async (noteData) => {
         let route = (noteData.CRUD === "update"
             ?`${url}/api/notes/updateNote/${noteData._id}` // update note info
-            : `${url}/api/notes/changePinState/${noteData._id}`); // simply update pinned state
+            : `${url}/api/notes/changePinState/${noteData._id}`); // simply change pinned state
         try {
             const response = await fetch(route, {
                 method: "PUT",
@@ -64,19 +73,18 @@ function App() {
                 },
                 body: JSON.stringify(
                     (noteData.CRUD === "update"
-                        ? {
+                        ? { // update the text fields
                             Title: noteData.Title,
                             Body: noteData.Body,
-                            Category: noteData.Category,
-                            Pinned: noteData.Pinned
-                        }
+                            Category: noteData.Category
+                        } // change only the Pinned state
                         : { Pinned: noteData.Pinned }
                     )
                 ),
             });
             if (response.ok) {
                 console.log("Note updated successfully.");
-                getNotes();
+                getAllNotes(); // called to refresh the grid of notes
             } else {
                 console.error("Failed to update note. Status:", response.status);
             }
@@ -85,17 +93,15 @@ function App() {
         }
     };
 
+    // This makes a hard DELETE request. It requires only the note's ObjectID.
     const deleteNote = async (noteData) => {
         try {
-            const response = await fetch(`${url}/api/notes/${noteData._id}`, { // Pass the _id in the URL
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                }
+            const response = await fetch(`${url}/api/notes/${noteData._id}`, {
+                method: "DELETE"
             });
             if (response.ok) {
                 console.log("Note deleted successfully.");
-                getNotes();
+                getAllNotes(); // called to refresh the grid of notes
             } else {
                 console.error("Failed to delete note. Status:", response.status);
             }
@@ -104,14 +110,22 @@ function App() {
         }
     };
 
-    useEffect(() => {
-        getNotes();
-    }, []);
-
+    // API requests from any child component will arrive here to be redirected to the appropriate CRUD functions.
+    // This is invoked through the CRUD property.
+    // "create" -> the 'submit' btn is clicked on a "Create New Note" window in NoteEditWindow.jsx
+    // "refresh" -> the 'refresh' btn on the SideBar is clicked.
+    // "find" -> the 'search' btn on the NavBar is clicked.
+    // "update" -> the 'submit' btn is clicked on an "Edit Note" window in NoteEditWindow.jsx
+    // "changePinState" -> the 'pin' btn is clicked on individual notes in the NotesBoard.jsx
+    // "delete" -> the 'trash' btn is clicked on individual notes in the NotesBoard.sjx
     function handleCRUD(noteData) {
-        // console.log("App.jsx received: ", noteData);
+        // console.log("App.jsx received: ", noteData); // reserved for debugging props.CRUD of child components
         if (noteData.CRUD === "create") {
             addNewNote(noteData);
+        } else if (noteData.CRUD === "refresh") { // not yet implemented. reserved for SideBar 'refresh' feature
+            getAllNotes();
+        } else if (noteData.CRUD === "search") { // not yet implemented. reserved for NavBar 'search' feature
+            // findNotes(noteData);
         } else if (noteData.CRUD === "update" || noteData.CRUD === "changePinState") {
             updateNote(noteData);
         } else if (noteData.CRUD === "delete") {
@@ -122,16 +136,20 @@ function App() {
     return (
     <>
         <div className="App">
-            <NavBar />
-            <SideBar />
-            {notes === null
-                ? null
-                : <NotesBoard
+            <NavBar
+                CRUD={handleCRUD} // reserved for 'search' btn click, (not yet implemented)
+            />
+            <SideBar
+                CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)
+            />
+            {notes // Notes is null by default, so it will only appear once getAllNotes() is finished
+                ? <NotesBoard
                     data={notes}
                     CRUD={handleCRUD}
-                    // CRUD will trigger from NoteItem when changing pin state
-                    // and from NoteEditWindow when creating/updating a note
+                    // CRUD will trigger from NoteItem when changing isPinned state
+                    // and clicking 'submit' btn from NoteEditWindow when creating/updating a note
                 />
+                : null
             }
         </div>
     </>
