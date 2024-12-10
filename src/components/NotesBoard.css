@@ -1,92 +1,194 @@
 /*
 Pin icon, black: https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000
-Pin icon, white: https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000
-Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
+Pin icon, white: https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=FFFFFF
+Plus icon, black: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
+Plus icon, white: https://img.icons8.com/?size=100&id=3220&format=png&color=FFFFFF
+Pencil icon: https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000
+Swatch icon: https://img.icons8.com/?size=100&id=54062&format=png&color=000000
+Bell icon: https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000
+Trash icon: https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=000000
+Menu icon: https://img.icons8.com/?size=100&id=98963&format=png&color=000000
 */
+
+/*
+This CSS applies to NotesBoard.jsx and NoteItem.jsx
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
 
 .notesBoard {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     flex-wrap: wrap;
+    justify-content: space-around;
     align-content: flex-start;
-    gap: 20px;
+    gap: 50px;
+    box-sizing: border-box;
+    padding: 100px 50px 50px 150px;
+    font-size: 20px;
+    color: white;
 }
+
 .newNoteContainer {
+    box-sizing: border-box;
+    margin: 0;
     width: 250px;
     height: 250px;
-    border: 2px dotted gray;
+    border: 3px dashed white;
     border-radius: 15px;
-    background-image: url(https://img.icons8.com/?size=100&id=11153&format=png&color=000000);
+    background-image: url('https://img.icons8.com/?size=100&id=11153&format=png&color=FFFFFF');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .newNoteContainer:hover {
-    background-color: lightgray;
+    background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
 
-
 .noteItemContainer {
-    font-family: Verdana, sans-serif;
-    width: 250px;
-    height: 250px;
-    box-sizing: border-box;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /*horizontal alignment*/
-    align-items: center; /*vertical alignment*/
+    row-gap: 10px;
+    justify-content: space-between;
+    width: 250px;
+    height: 250px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
 }
 
-.noteItemContainer:hover > .footer > .noteButtonMenu {
+.noteItemContainer:hover {
+    .pin-off, .noteButton {
+        visibility: visible;
+    }
+    .pin-on {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    box-shadow: white 0px 0px 30px;
+    .category {
+        max-width: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.timeStamp {
+    color: gray;
+    font-size: .6em;
+    text-align: center;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#pin {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15%;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+#pin:hover {
+    background-color: coral;
+}
+
+.pin-off {
+    background-color: rgba(255, 255, 255, 0.5);
+    visibility: hidden;
+}
+
+.pin-on{
+    background-color: transparent;
     visibility: visible;
 }
 
 .title, .body {
-    border: 1px solid black;
+    color: black;
+    background-color: rgba(255,255,255,0.3);
     border-radius: 5px;
+    text-align: left;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    text-wrap: inherit;
+    text-overflow: ellipsis;
+    overflow: clip;
+    padding: 0.2em;
 }
 
 .title {
-    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    min-height: 1em;
+    max-height: calc(1.2em * 2);
+    max-width: 145px;
 }
 
 .body {
-    text-align: left;
+    font-size: 0.8em;
+    height: 100px;
+    max-height: calc(1.2em * 5);
 }
 
 .footer {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 2px;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    font-size: 0.7em;
+    font-weight: lighter;
+    border: 1px solid transparent;
+    padding: 0.2em;
+    height: 22px;
+    border-radius: 5px;
+    background-color: #183C5C;
 }
 
 .noteButtonMenu {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    gap: 5px;
+    margin-left: 2px;
     visibility: hidden;
-
 }
 
 .noteButton {
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: transparent;
-    width: 25px;
-    height: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 30px;
+    height: 30px;
     border-radius: 15%;
-    border: 1px solid coral;
+    border: none;
     cursor: pointer;
-    margin: 0 2px;
 }
+.noteButton:hover {
+    background-color: coral;
+}
+.noteButton:disabled {
+    background-color: gray;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 #edit {
     background-image: url('https://img.icons8.com/?size=100&id=P1bJzKUoOQYz&format=png&color=000000');
 }
@@ -96,6 +198,12 @@ Plus icon: https://img.icons8.com/?size=100&id=11153&format=png&color=000000
 #reminder {
     background-image: url('https://img.icons8.com/?size=100&id=DKjZ0mk8Zg4w&format=png&color=000000');
 }
-#menu {
-    background-image: url('https://img.icons8.com/?size=100&id=98963&format=png&color=000000');
+#trash {
+    background-image: url('https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=FFFFFF');
+    background-color: rgba(255, 0, 0, 0.5);
 }
+#trash:hover {
+    background-image: url('https://img.icons8.com/?size=100&id=G01ACMKXfdpJ&format=png&color=000000');
+    background-color: red;
+}
+

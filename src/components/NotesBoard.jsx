@@ -1,55 +1,35 @@
 // This component will encapsulate the actual sticky notes. Similar to the BookLibrary exercise.
 
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
+import {useState, useEffect} from "react";
+
 import "./NotesBoard.css"
 import NoteItem from "./NoteItem.jsx";
-function NotesBoard(props) {
-    let note = [
-        {
-            "Type" : "new"
-        }
-    ];
 
-    // Once API is established, this for loop will push items
-    // into the note array with fields from props containing
-    // information fetched from the database
-    for (let i = 0; i < 20; i++) {
-        note.push(
-            {
-                "Title": "COMP229 WEB DEVELOPMENT",
-                "Body" : "Hello World!",
-                "Category" : "Courses",
-                "Type" : "existing"
-            }
-            // {
-            //     "Title": props.title,
-            //     "Body" : props.body,
-            //     "Category" : props.category,
-            //     "Type" : "existing"
-            // }
-        )
-    }
+function NotesBoard(props) {
+    const [data, setData] = useState([]);
+
+    // Pretty self-explanatory
+    useEffect(() => {
+            setData(props.data);
+    }, [props.data]);
 
     return (
         <>
             <div className="notesBoard">
-                {note.map((note, index) => {
-                    if(note.Type == "new") {
+                {data.map((note, index) => { // Map through all records of 'notes' from App.jsx
+                    if (note.Type === "new") { // There will be only 1 ghost note with {"Type" : "new"}
                         return (
-                            <NoteItem
-                                key={index}
-                                Type={"new"}
-                            />
+                            <NoteItem key={index}
+                                      Type={"new"}
+                                      CRUD={props.CRUD}/>
                         )
                     } else {
-                        return (
-                            <NoteItem
-                                key={index}
-                                Title={note.Title}
-                                Body={note.Body}
-                                Category={note.Category}
-                                Type={"existing"}
-                            />
+                        return ( // Any other notes are formed here
+                            <NoteItem key={index}
+                                      noteData={note}
+                                      Type={"existing"}
+                                      CRUD={props.CRUD}/>
                         )
                     }
                 })}
