@@ -5,6 +5,8 @@
 
 /* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
 
+/* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
+
 import React, { useState } from "react";
 import "./Sidebar.css";
 
@@ -21,15 +23,28 @@ const Sidebar = () => {
       <button className="burger-menu" onClick={toggleSidebar}>
         &#9776; {/* Hamburger menu icon */}
       </button>
+
       {/* Sidebar that toggles visibility */}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <ul className="menu">
-          <li>Home</li>
-          <li>About</li>
-          <li>Services</li>
-          <li>Contact</li>
+          <li className="menu-item">
+            <i className="icon home-icon"></i> All Notes
+          </li>
+          <li className="menu-item">
+            <i className="icon pinned-icon"></i> Pinned Notes
+          </li>
+          <li className="menu-item">
+            <i className="icon archived-icon"></i> Archived Notes
+          </li>
+          <li className="menu-item">
+            <i className="icon trash-icon"></i> Trash
+          </li>
+          <li className="menu-item logout">
+            <i className="icon logout-icon"></i> Logout
+          </li>
         </ul>
       </div>
+      
       {/* Overlay to close the sidebar */}
       {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
     </>
