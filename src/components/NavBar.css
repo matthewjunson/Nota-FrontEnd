@@ -35,6 +35,10 @@
     border: none;
 }
 
+.logo-icon:hover {
+    cursor: pointer;
+}
+
 .app-name {
     color: white;
 }

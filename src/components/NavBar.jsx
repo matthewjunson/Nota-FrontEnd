@@ -7,15 +7,21 @@
 
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar(props) {
     return (
-        <div className="navbar">
+        <>
+            <div className={"navbar"}
+                 style={{
+                     fontFamily: "Roboto",
+                     fontSize: "1.3em",
+                 }}>
                 <button className="burger-menu"/>
-                <button className="logo-icon" />
-                <h1 className="app-name">NOTA</h1>
-                <input className="search-bar" type="text" placeholder="Search notes..." />
+                <button className="logo-icon" onClick={() => props.CRUD({"CRUD" : "refresh"})} />
+                <h1 className="app-name">n∘ta.</h1>
+                <input className="search-bar" type="text" placeholder="Search notes..."/>
                 <button className="search-button"/>
-        </div>
+            </div>
+        </>
     );
 }
 

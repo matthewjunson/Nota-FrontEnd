@@ -84,59 +84,9 @@ function NoteItem(props) {
         props.CRUD(noteData);
     }
 
-    // Called to generate either the 'new note' button or an existing note
-    function GenerateNote () {
-        if (type === "new") { // new note
-            return (
-            <>
-                <div className='newNoteContainer' onClick={() => setEditWindowVisible(true)} />
-            </>
-            )
-        } else { // existing note
-            return (
-            <>
-                <div className="noteItemContainer"
-                     // style={{backgroundColor: colour}}
-                     style={{backgroundColor: "wheat"}}>
-                    <div className='timeStamp'>{modifiedDate}</div>
-                    <div className="top">
-                        <div className="title">{title}</div>
-                        <div>
-                            <button id="pin"
-                                    onClick={handlePinClick}
-                                    className={isPinned ? "pin-on" : "pin-off"}
-                                    style={{backgroundImage: `url(${getPinImage()})`}}/>
-                        </div>
-                    </div>
-                    <div className="body">{body}</div>
-                    <div className="footer">
-                        <div className="category">{category}</div>
-                        <div className="noteButtonMenu">
-                            <button id='edit'
-                                    className='noteButton'
-                                    onClick={() => setEditWindowVisible(true)}/>
-                            <button id='color'
-                                    className='noteButton'
-                                    disabled={true}
-                                    onClick={props.onClick}/>
-                            <button id='reminder'
-                                    className='noteButton'
-                                    disabled={true}
-                                    onClick={props.onClick}/>
-                            <button id='trash'
-                                    className='noteButton'
-                                    onClick={handleDeleteBtn}/>
-                        </div>
-                    </div>
-                </div>
-            </>
-            )
-        }
-    }
-
     return (
         <>
-            {GenerateNote()}
+            {/*{GenerateNote()}*/}
             {editWindowVisible === true
                 ? <NoteEditWindow
                     Type={type}
@@ -144,6 +94,49 @@ function NoteItem(props) {
                     onExitClick={setEditWindowVisible}
                     CRUD={handleEditWindowSubmit}/>
                 : null
+            }
+            {type === "new"
+                ? // for the 'new' ghost note
+                <>
+                    <div className='newNoteContainer' onClick={() => setEditWindowVisible(true)} />
+                </>
+                : // for existing notes
+                <>
+                    <div className="noteItemContainer"
+                        // style={{backgroundColor: colour}}
+                         style={{backgroundColor: "wheat"}}>
+                        <div className='timeStamp'>{modifiedDate}</div>
+                        <div className="top">
+                            <div className="title">{title}</div>
+                            <div>
+                                <button id="pin"
+                                        onClick={handlePinClick}
+                                        className={isPinned ? "pin-on" : "pin-off"}
+                                        style={{backgroundImage: `url(${getPinImage()})`}}/>
+                            </div>
+                        </div>
+                        <div className="body">{body}</div>
+                        <div className="footer">
+                            <div className="category">{category}</div>
+                            <div className="noteButtonMenu">
+                                <button id='edit'
+                                        className='noteButton'
+                                        onClick={() => setEditWindowVisible(true)}/>
+                                <button id='color'
+                                        className='noteButton'
+                                        disabled={true}
+                                        onClick={props.onClick}/>
+                                <button id='reminder'
+                                        className='noteButton'
+                                        disabled={true}
+                                        onClick={props.onClick}/>
+                                <button id='trash'
+                                        className='noteButton'
+                                        onClick={handleDeleteBtn}/>
+                            </div>
+                        </div>
+                    </div>
+                </>
             }
         </>
     )
