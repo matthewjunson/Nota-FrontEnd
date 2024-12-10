@@ -40,7 +40,7 @@ function LoadingScreen() {
                  }}>
                 {timer > 0
                     ? <>
-                        <div>{"Loading..."}</div>
+                        <div>{"connecting to the notabase..."}</div>
                         <div>{`(~${timer}s)`}</div>
                     </>
                     : <div>{"this is taking longer than usual :("}</div>
