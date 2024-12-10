@@ -5,16 +5,36 @@
 
 /* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
 
-import "./SideBar.css";
+import React, { useState } from "react";
+import "./Sidebar.css";
 
-function SideBar() {
-    return (
-        <>
-            <div className="side-bar">
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-            </div>
-        </>
-    )
-}
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
-export default SideBar;
+  return (
+    <>
+      {/* Button with class burger-menu */}
+      <button className="burger-menu" onClick={toggleSidebar}>
+        &#9776; {/* Hamburger menu icon */}
+      </button>
+      {/* Sidebar that toggles visibility */}
+      <div className={`sidebar ${isOpen ? "open" : ""}`}>
+        <ul className="menu">
+          <li>Home</li>
+          <li>About</li>
+          <li>Services</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+      {/* Overlay to close the sidebar */}
+      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+    </>
+  );
+};
+
+export default Sidebar;
+
