@@ -6,6 +6,7 @@ import './App.css'
 import NotesBoard from "./components/NotesBoard.jsx";
 import NavBar from "./components/NavBar.jsx";
 import SideBar from "./components/SideBar.jsx";
+import LoadingScreen from "./components/LoadingScreen.jsx";
 
 function App() {
     const [notes, setNotes] = useState(null);
@@ -142,14 +143,14 @@ function App() {
             <SideBar
                 CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)
             />
-            {notes // Notes is null by default, so it will only appear once getAllNotes() is finished
+            {notes
                 ? <NotesBoard
                     data={notes}
                     CRUD={handleCRUD}
-                    // CRUD will trigger from NoteItem when changing isPinned state
-                    // and clicking 'submit' btn from NoteEditWindow when creating/updating a note
+                    // CRUD will trigger from NoteItem when changing isPinned state and
+                    // clicking 'submit' btn from NoteEditWindow when creating/updating a note
                 />
-                : null
+                : <LoadingScreen /> // display a loading screen while Render wakes up the backend
             }
         </div>
     </>

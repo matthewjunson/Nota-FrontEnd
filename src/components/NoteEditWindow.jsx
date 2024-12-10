@@ -113,8 +113,8 @@ function NoteEditWindow(props) {
                                value={category}
                                onChange={(e) => setCategory(e.target.value)}/>
                         <div className="date-stamp">
-                            {modifiedDate ? <div>Modified:</div> : null}
-                            <div>{modifiedDate}</div>
+                            {creationDate ? <div>Created:</div> : null}
+                            <div>{creationDate}</div>
                         </div>
                         <button className="submit"
                                 disabled={disableSubmitBtn}
