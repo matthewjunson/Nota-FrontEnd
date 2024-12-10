@@ -18,20 +18,26 @@ function App() {
 
     // This makes a GET request to retrieve any and all exising notes from the database
     const getAllNotes = async () => {
-        let notes = [
-            {"Type": "new"},
-        ];
         try {
             const response = await fetch(`${url}/api/notes`);
             const dbNotes = await response.json();
             if (response.ok) {
-                dbNotes.forEach(note => {
-                    notes.push(note);
-                })
+                if (dbNotes) {
+                    console.info("GET success");
+                    console.log(dbNotes);
+                    let notesList = [];
+                    dbNotes.forEach(note => {
+                        notesList.push(note);
+                    })
+                    setNotes(notesList);
+                }
+            } else {
+                setTimeout(getAllNotes, 1000);
             }
-            setNotes(notes);
         } catch (error) {
-            console.error("Error fetching todos:", error);
+            console.error("Error fetching notes:", error);
+            setNotes(null);
+            setTimeout(getAllNotes, 1000);
         }
     }
 
@@ -120,7 +126,7 @@ function App() {
     // "changePinState" -> the 'pin' btn is clicked on individual notes in the NotesBoard.jsx
     // "delete" -> the 'trash' btn is clicked on individual notes in the NotesBoard.sjx
     function handleCRUD(noteData) {
-        // console.log("App.jsx received: ", noteData); // reserved for debugging props.CRUD of child components
+        console.log("App.jsx received: ", noteData); // reserved for debugging props.CRUD of child components
         if (noteData.CRUD === "create") {
             addNewNote(noteData);
         } else if (noteData.CRUD === "refresh") { // not yet implemented. reserved for SideBar 'refresh' feature

@@ -17,21 +17,15 @@ function NotesBoard(props) {
     return (
         <>
             <div className="notesBoard">
-                {data.map((note, index) => { // Map through all records of 'notes' from App.jsx
-                    if (note.Type === "new") { // There will be only 1 ghost note with {"Type" : "new"}
-                        return (
-                            <NoteItem key={index}
-                                      Type={"new"}
-                                      CRUD={props.CRUD}/>
-                        )
-                    } else {
-                        return ( // Any other notes are formed here
-                            <NoteItem key={index}
-                                      noteData={note}
-                                      Type={"existing"}
-                                      CRUD={props.CRUD}/>
-                        )
-                    }
+                <NoteItem Type={"new"}
+                          CRUD={props.CRUD}/>
+                {data.map((note,index) => { // Map through all records of 'notes' from App.jsx
+                    return (
+                        <NoteItem key={index}
+                                  noteData={note}
+                                  Type={"existing"}
+                                  CRUD={props.CRUD}/>
+                    )
                 })}
             </div>
         </>

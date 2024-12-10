@@ -38,7 +38,7 @@ function NoteItem(props) {
         const dateObj = new Date(isoDate);
         const date = dateObj.toLocaleDateString(); // MM/DD/YYYY or whatever the local format is
         const time = dateObj.toLocaleTimeString(); // 00:00:00 AM/PM
-        return `${date} ${time}`;
+        return `${date} - ${time}`;
     };
 
     // Called to generate a random light colors in hexadecimal format
