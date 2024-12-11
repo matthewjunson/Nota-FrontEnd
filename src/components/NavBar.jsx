@@ -5,9 +5,19 @@
 
 /* eslint-disable react/prop-types */ //DO NOT REMOVE THIS LINE
 
+import {useState, useEffect} from "react";
 import "./NavBar.css";
 
 function NavBar(props) {
+    const [query, setQuery] = useState("");
+
+    // This detects changes in the search bar and sends the query back to App.jsx to be filtered
+    useEffect(() => {
+        (query.trim() === ""
+            ? props.searchResults(null)
+            : props.searchResults(query));
+    }, [query]);
+
     return (
         <>
             <div className={"navbar"}
@@ -18,8 +28,12 @@ function NavBar(props) {
                 <button className="burger-menu"/>
                 <button className="logo-icon" onClick={() => props.CRUD({"CRUD" : "refresh"})} />
                 <h1 className="app-name">n∘ta.</h1>
-                <input className="search-bar" type="text" placeholder="Search notes..."/>
-                <button className="search-button"/>
+                <input className="search-bar"
+                       type="text"
+                       placeholder="Search notes..."
+                       value={query} // a red warning may show in console regarding 'uncontrolled input', disregard it.
+                       onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
         </>
     );

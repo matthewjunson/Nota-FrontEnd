@@ -19,6 +19,7 @@ function NoteItem(props) {
 
     useEffect(() => {
         setType(props.Type || "new")
+        setColor(getRandomHexColor());
         let noteData = props.noteData;
         if (noteData) {
             setId(noteData._id);
@@ -32,6 +33,12 @@ function NoteItem(props) {
         }
     }, [props.noteData])
 
+    // This only applies when the 'new note' btn is clicked.
+    // A random hex color will be set each time the edit window opens.
+    useEffect(() => {
+        setColor(getRandomHexColor());
+    }, [editWindowVisible]);
+
     // This reformats the ISODate from MongoDB into a more readable format
     const formatDateTime = (isoDate) => {
         if (!isoDate) return null;
@@ -41,12 +48,10 @@ function NoteItem(props) {
         return `${date} - ${time}`;
     };
 
-    // Called to generate a random light colors in hexadecimal format
+    // Called to choose a random color in hexadecimal format
     const getRandomHexColor = () => {
-        const max = Math.pow(256,3)-1; // equivalent to rgb(255,255,255)
-        const min = max / 2; // equivalent to rgb(127,127,127)
-        const hex = Math.floor((Math.random() * (max - min)) + min).toString(16);
-        return `#${hex.padStart(6, '0')}`;
+        const colors = ["#F0EBD9", "#F5DEB3", "#799B7A", "#B9E1DB", "#EFA3B1", "#F2D519"]
+        return colors[Math.floor(Math.random() * colors.length)];
     }
 
     // NoteEditWindow.jsx behaves like an overlay. When the 'submit' btn is clicked, the overlay is closed and
@@ -91,6 +96,7 @@ function NoteItem(props) {
                 ? <NoteEditWindow
                     Type={type}
                     noteData={props.noteData}
+                    color={color}
                     onExitClick={setEditWindowVisible}
                     CRUD={handleEditWindowSubmit}/>
                 : null
@@ -98,14 +104,20 @@ function NoteItem(props) {
             {type === "new"
                 ? // for the 'new' ghost note
                 <>
-                    <div className='newNoteContainer' onClick={() => setEditWindowVisible(true)} />
+                    <div className='newNoteContainer'
+                         onClick={() => setEditWindowVisible(true)}
+                         style={{...props.style}}
+                    />
                 </>
                 : // for existing notes
                 <>
                     <div className="noteItemContainer"
-                        // style={{backgroundColor: colour}}
-                         style={{backgroundColor: "wheat"}}>
-                        <div className='timeStamp'>{modifiedDate}</div>
+                         style={{
+                             ...props.style,
+                             // backgroundColor: "wheat"
+                             backgroundColor: color
+                         }}>
+                        <div className='timeStamp'>Edited: {modifiedDate}</div>
                         <div className="top">
                             <div className="title">{title}</div>
                             <div>
