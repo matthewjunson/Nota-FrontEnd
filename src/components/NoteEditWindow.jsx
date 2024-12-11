@@ -18,7 +18,7 @@ function NoteEditWindow(props) {
     const [body, setBody] = useState('')
     const [category, setCategory] = useState('')
     const [disableSubmitBtn, setDisableSubmitBtn] = useState(true)
-    const [color, setColor] = useState('') //unused at the moment
+    const [color, setColor] = useState(props.color) //unused at the moment
 
     useEffect(() => {
         setType(props.Type || "new");
@@ -33,7 +33,7 @@ function NoteEditWindow(props) {
             setInitialTitle(noteData.Title);
             setInitialBody(noteData.Body);
             setInitialCategory(noteData.Category);
-            // setColor(noteData.Color);
+            setColor(noteData.Color || props.color);
         }
     }, [])
 
@@ -76,9 +76,11 @@ function NoteEditWindow(props) {
             "CRUD": (type === "new" ? "create" : "update"),
             "Title": title,
             "Body": body,
-            "Category": category // this will be defaulted to 'General' if null
+            "Category": category, // this will be defaulted to 'General' if null
+            "Color": color
         }
         if (title && body) {
+            // console.log("NoteEditWindow.jsx sent: ", noteData); // for debugging props.CRUD
             props.CRUD(noteData);
         }
     }
@@ -86,7 +88,8 @@ function NoteEditWindow(props) {
     return (
         <>
             <div className="overlay">
-                <div className="editor-container">
+                <div className="editor-container"
+                     style={{backgroundColor: color}}>
                     <div className="window-header">
                         <div className="header-spacer-left"/>
                         <div className="header">{(type === "new" ? "Create New Note" : "Edit Note")}</div>

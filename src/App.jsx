@@ -11,7 +11,7 @@ import LoadingScreen from "./components/LoadingScreen.jsx";
 function App() {
     const [notesFromDB, setNotesFromDB] = useState(null);
     const [searchQuery, setSearchQuery] = useState(null);
-    const [notes, setNotes] = useState(null);
+    const [displayedNotes, setDisplayedNotes] = useState(null);
     const url = import.meta.env.VITE_BE_URL;
 
     useEffect(() => {
@@ -30,9 +30,9 @@ function App() {
                     note.Category?.toLowerCase().includes(lowerCaseQuery)
                 );
             });
-            setNotes(filteredResults);
+            setDisplayedNotes(filteredResults);
         } else {
-            setNotes(notesFromDB);
+            setDisplayedNotes(notesFromDB);
         }
     }, [searchQuery, notesFromDB]);
 
@@ -66,7 +66,7 @@ function App() {
                     "Title": noteData.Title,
                     "Body": noteData.Body,
                     "Category": noteData.Category,
-                    "Pinned": noteData.Pinned
+                    "Color": noteData.Color,
                 }),
             });
             if (response.ok) {
@@ -96,7 +96,8 @@ function App() {
                         ? { // update the text fields
                             Title: noteData.Title,
                             Body: noteData.Body,
-                            Category: noteData.Category
+                            Category: noteData.Category,
+                            Color: noteData.Color,
                         } // change only the Pinned state
                         : { Pinned: noteData.Pinned }
                     )
@@ -161,9 +162,9 @@ function App() {
             <SideBar
                 CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)
             />
-            {notes
+            {displayedNotes
                 ? <NotesBoard
-                    data={notes}
+                    data={displayedNotes}
                     CRUD={handleCRUD}
                     // CRUD will trigger from NoteItem when changing isPinned state and
                     // clicking 'submit' btn from NoteEditWindow when creating/updating a note

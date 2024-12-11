@@ -18,13 +18,17 @@ function NotesBoard(props) {
         <>
             <div className="notesBoard">
                 <NoteItem Type={"new"}
-                          CRUD={props.CRUD}/>
+                          CRUD={props.CRUD}
+                          style={{ animationDelay: `0s` }}
+                />
                 {data.map((note,index) => { // Map through all records of 'notes' from App.jsx
                     return (
                         <NoteItem key={index}
                                   noteData={note}
                                   Type={"existing"}
-                                  CRUD={props.CRUD}/>
+                                  CRUD={props.CRUD}
+                                  style={{animationDelay: `${index * 33}ms`}}
+                        />
                     )
                 })}
             </div>
