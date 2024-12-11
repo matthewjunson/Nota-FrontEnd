@@ -159,9 +159,9 @@ function App() {
                 searchResults={setSearchQuery}
                 CRUD={handleCRUD}
             />
-            <SideBar
-                CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)
-            />
+            {/*<SideBar*/}
+            {/*    CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)*/}
+            {/*/>*/}
             {displayedNotes
                 ? <NotesBoard
                     data={displayedNotes}
