@@ -9,6 +9,8 @@ import SideBar from "./components/SideBar.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 
 function App() {
+    const [notesFromDB, setNotesFromDB] = useState(null);
+    const [searchQuery, setSearchQuery] = useState(null);
     const [notes, setNotes] = useState(null);
     const url = import.meta.env.VITE_BE_URL;
 
@@ -16,29 +18,40 @@ function App() {
         getAllNotes();
     }, []);
 
+    // This detects changes in the search bar and updates the
+    // NotesBoard to display only notes that match the searched query.
+    useEffect(() => {
+        if (searchQuery) {
+            const lowerCaseQuery = searchQuery.toLowerCase();
+            const filteredResults = notesFromDB.filter(note => {
+                return (
+                    note.Title?.toLowerCase().includes(lowerCaseQuery) ||
+                    note.Body?.toLowerCase().includes(lowerCaseQuery) ||
+                    note.Category?.toLowerCase().includes(lowerCaseQuery)
+                );
+            });
+            setNotes(filteredResults);
+        } else {
+            setNotes(notesFromDB);
+        }
+    }, [searchQuery, notesFromDB]);
+
     // This makes a GET request to retrieve any and all exising notes from the database
     const getAllNotes = async () => {
         try {
             const response = await fetch(`${url}/api/notes`);
             const dbNotes = await response.json();
-            if (response.ok) {
-                if (dbNotes) {
-                    console.info("GET success");
-                    console.log(dbNotes);
-                    let notesList = [];
-                    dbNotes.forEach(note => {
-                        notesList.push(note);
-                    })
-                    setNotes(notesList);
-                }
-            } else {
-                setTimeout(getAllNotes, 1000);
-            }
+            (response.ok
+                ? dbNotes
+                    ? setNotesFromDB(dbNotes) : null
+                : setTimeout(getAllNotes, 1000)
+            )
         } catch (error) {
             console.error("Error fetching notes:", error);
-            setNotes(null);
+            setNotesFromDB(null);
             setTimeout(getAllNotes, 1000);
         }
+        setSearchQuery(null);
     }
 
     // This makes a POST request to insert a new record into the DB when a new note is being created
@@ -119,20 +132,17 @@ function App() {
 
     // API requests from any child component will arrive here to be redirected to the appropriate CRUD functions.
     // This is invoked through the CRUD property.
-    // "create" -> the 'submit' btn is clicked on a "Create New Note" window in NoteEditWindow.jsx
-    // "refresh" -> the 'refresh' btn on the SideBar is clicked.
-    // "find" -> the 'search' btn on the NavBar is clicked.
-    // "update" -> the 'submit' btn is clicked on an "Edit Note" window in NoteEditWindow.jsx
+    // "create"         -> the 'submit' btn is clicked on a "Create New Note" window in NoteEditWindow.jsx
+    // "refresh"        -> the 'refresh' btn on the SideBar is clicked.
+    // "update"         -> the 'submit' btn is clicked on an "Edit Note" window in NoteEditWindow.jsx
     // "changePinState" -> the 'pin' btn is clicked on individual notes in the NotesBoard.jsx
-    // "delete" -> the 'trash' btn is clicked on individual notes in the NotesBoard.sjx
+    // "delete"         -> the 'trash' btn is clicked on individual notes in the NotesBoard.sjx
     function handleCRUD(noteData) {
-        console.log("App.jsx received: ", noteData); // reserved for debugging props.CRUD of child components
+        // console.log("App.jsx received: ", noteData); // for debugging props.CRUD of child components
         if (noteData.CRUD === "create") {
             addNewNote(noteData);
         } else if (noteData.CRUD === "refresh") { // not yet implemented. reserved for SideBar 'refresh' feature
             getAllNotes();
-        } else if (noteData.CRUD === "search") { // not yet implemented. reserved for NavBar 'search' feature
-            // findNotes(noteData);
         } else if (noteData.CRUD === "update" || noteData.CRUD === "changePinState") {
             updateNote(noteData);
         } else if (noteData.CRUD === "delete") {
@@ -144,7 +154,9 @@ function App() {
     <>
         <div className="App">
             <NavBar
-                CRUD={handleCRUD} // reserved for 'search' btn click, (not yet implemented)
+                data={notesFromDB}
+                searchResults={setSearchQuery}
+                CRUD={handleCRUD}
             />
             <SideBar
                 CRUD={handleCRUD} // reserved for 'refresh' btn click, (not yet implemented)

@@ -7,7 +7,7 @@
 import {useEffect, useState} from "react";
 
 function LoadingScreen() {
-    const [timer, setTimer] = useState(22); // value in seconds
+    const [timer, setTimer] = useState(30); // value in seconds
 
     // this is a countdown timer
     useEffect(() => {
