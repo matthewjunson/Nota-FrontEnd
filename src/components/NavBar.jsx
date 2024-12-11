@@ -25,9 +25,12 @@ function NavBar(props) {
                      fontFamily: "Roboto",
                      fontSize: "1.3em",
                  }}>
-                <button className="burger-menu"/>
+                {/*<button className="burger-menu"/>*/} {/*deprecated for now*/}
                 <button className="logo-icon" onClick={() => props.CRUD({"CRUD" : "refresh"})} />
                 <h1 className="app-name">n∘ta.</h1>
+                <button className="refresh-btn"
+                        onClick={() => props.CRUD({"CRUD" : "refresh"})}
+                />
                 <input className="search-bar"
                        type="text"
                        placeholder="Search notes..."

@@ -39,7 +39,7 @@ This CSS applies to NotesBoard.jsx and NoteItem.jsx
     align-content: flex-start;
     gap: 50px;
     box-sizing: border-box;
-    padding: 100px 50px 50px 150px;
+    padding: 100px 50px 50px 50px;
     font-size: 20px;
     color: white;
 }

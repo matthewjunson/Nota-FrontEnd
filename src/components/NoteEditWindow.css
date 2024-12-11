@@ -8,7 +8,7 @@ Close icon 2: https://img.icons8.com/?size=100&id=6483&format=png&color=000000
     position: fixed;
     z-index: 21;
     top: 60px;
-    left: 100px;
+    left: 0;
     right: 0;
     bottom: 0;
     display: flex;

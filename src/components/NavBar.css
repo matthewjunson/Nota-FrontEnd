@@ -13,22 +13,23 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.burger-menu {
-    position: relative;
-    left: 25px;
-    width: 50px;
-    height: 50px;
-    margin-right: 50px;
-    background-image: url("https://img.icons8.com/?size=100&id=OTxpMqWbm71F&format=png&color=FFFFFF");
-    background-size: cover;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
+/*.burger-menu {*/
+/*    position: relative;*/
+/*    left: 25px;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    margin-right: 50px;*/
+/*    background-image: url("https://img.icons8.com/?size=100&id=OTxpMqWbm71F&format=png&color=FFFFFF");*/
+/*    background-size: cover;*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .logo-icon {
     width: 50px;
     height: 50px;
+    margin-left: 10px;
     background-image: url("https://img.icons8.com/?size=100&id=0Jj2OFqGGRVZ&format=png&color=000000");
     background-size: cover;
     background-color: transparent;
@@ -43,29 +44,33 @@
     color: white;
 }
 
-.search-bar {
+.refresh-btn {
     position: absolute;
-    left: calc(50vw - 100px);
-    width: 300px;
-    height: 40px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.search-button{
-    position: absolute;
-    left: calc(50vw + 215px);
-    width: 40px;
-    height: 40px;
-    background-image: url("https://img.icons8.com/?size=100&id=2sWrwEXiaegS&format=png&color=FFFFFF");
-    background-size: 90%;
+    left: calc(50vw - 335px);
+    width: 50px;
+    height: 50px;
+    margin-right: 50px;
+    padding: 0;
+    background-image: url("https://img.icons8.com/?size=100&id=102312&format=png&color=ffffff");
+    background-size: cover;
     background-color: transparent;
     border: none;
-    border-radius: 50%;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.search-button:hover{
-    cursor: pointer;
-    background-color: rgba(255,255,255,0.3);
+.refresh-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.search-bar {
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 1.2em;
+    width: 550px;
+    height: 40px;
+    position: absolute;
+    left: calc(50vw - (550px / 2));
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /*font-size: 16px;*/
 }

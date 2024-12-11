@@ -45,7 +45,7 @@ function NoteItem(props) {
         const dateObj = new Date(isoDate);
         const date = dateObj.toLocaleDateString(); // MM/DD/YYYY or whatever the local format is
         const time = dateObj.toLocaleTimeString(); // 00:00:00 AM/PM
-        return `${date} - ${time}`;
+        return `${time} - ${date}`;
     };
 
     // Called to choose a random color in hexadecimal format
@@ -64,8 +64,8 @@ function NoteItem(props) {
     // This changes the 'pin' icon style based on its isPinned state
     const getPinImage = () => {
         return isPinned
-            ? "https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000" // Black pin
-            : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // White pin
+            ? "https://img.icons8.com/?size=100&id=9JrqhYs9ejP6&format=png&color=000000" // Pinned
+            : "https://img.icons8.com/?size=100&id=0BngLkWjYAnC&format=png&color=000000"; // Unpinned
     }
 
     // Called when the 'pin' btn is clicked. The changed isPinned state is sent to App.jsx through the
