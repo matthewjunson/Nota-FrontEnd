@@ -19,7 +19,7 @@ function NoteItem(props) {
 
     useEffect(() => {
         setType(props.Type || "new")
-        setColor(getRandomHexColor());
+        // setColor(getRandomHexColor());
         let noteData = props.noteData;
         if (noteData) {
             setId(noteData._id);
@@ -30,6 +30,8 @@ function NoteItem(props) {
             setCategory(noteData.Category);
             setIsPinned(noteData.Pinned);
             setColor(noteData.Color);
+        } else {
+            setColor(getRandomHexColor());
         }
     }, [props.noteData])
 
