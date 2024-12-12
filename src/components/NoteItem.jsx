@@ -29,7 +29,7 @@ function NoteItem(props) {
             setBody(noteData.Body);
             setCategory(noteData.Category);
             setIsPinned(noteData.Pinned);
-            setColor(noteData.Color || getRandomHexColor());
+            setColor(noteData.Color);
         }
     }, [props.noteData])
 
@@ -91,7 +91,6 @@ function NoteItem(props) {
 
     return (
         <>
-            {/*{GenerateNote()}*/}
             {editWindowVisible === true
                 ? <NoteEditWindow
                     Type={type}
