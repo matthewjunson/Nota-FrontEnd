@@ -24,7 +24,7 @@ A simple digital alternative to paper sticky notes. This app is helpful to every
 2. Click the 'pin' button near the top-right corner of the note.
    * The NOTA will be pinned to the top of the grid in chronological order with other pinned NOTAs.
 
-## Searching for NOTAs (not ready)
+## Searching for NOTAs
 1. Enter keywords you're looking to find in the 'Search' bar.
 2. Click on the 'magnifying glass' button.
     * Be general with your search, as this will perform exact matches only.
