@@ -42,7 +42,6 @@ A simple digital alternative to paper sticky notes. This app is helpful to every
 
 ![{B768890E-347B-4467-9D30-CBEC7726209D}](https://github.com/user-attachments/assets/e04f0d9e-f69b-4d41-854d-44dd333c3544)
 
-
 ## Searching for NOTAs
 ![{DE8D4337-BAD3-424B-9A85-2F6EF14B4588}](https://github.com/user-attachments/assets/2e21ec63-1a98-443f-b8f3-3145148884a3)
 
